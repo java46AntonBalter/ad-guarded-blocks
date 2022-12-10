@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  */
 public class Semaphore {
 	private int resourceCount;
-	private int threadCount;
+	private static int threadCount;
 
 	public Semaphore(int resourceCount) {
 		this.resourceCount = resourceCount;
