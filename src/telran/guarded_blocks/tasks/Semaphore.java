@@ -13,6 +13,7 @@ import java.util.stream.Stream;
  */
 public class Semaphore {
 	private int resourceCount;
+	private int threadCount;
 
 	public Semaphore(int resourceCount) {
 		this.resourceCount = resourceCount;
@@ -25,14 +26,17 @@ public class Semaphore {
 	 * @throws InterruptedException
 	 */
 	public synchronized void acquire() throws InterruptedException {
-		// TODO: implement method
+		if(++threadCount > resourceCount) {
+			this.wait();
+		}
 	}
 
 	/**
 	 * Releases previously acquired resource. Never suspends current thread.
 	 */
 	public synchronized void release() {
-		// TODO: implement method
+		--threadCount;
+		this.notify();
 	}
 
 	/**
