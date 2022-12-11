@@ -26,7 +26,7 @@ public class Semaphore {
 	 * @throws InterruptedException
 	 */
 	public synchronized void acquire() throws InterruptedException {
-		if(++threadCount > resourceCount) {
+		while(++threadCount > resourceCount) {
 			this.wait();
 		}
 	}
